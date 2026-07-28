@@ -1,0 +1,16 @@
+.header {
+  background-color: var(--background);
+  border-bottom: 1px solid var(--border);
+  padding-block: 1.25rem;
+
+  > .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .route-list {
+    display: flex;
+    gap: 1rem;
+  }
+}
