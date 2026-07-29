@@ -1,23 +1,40 @@
 import './ProductCard.css';
-// import { Badge } from '@/components/ui/Badge';
+import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
+import { Rating } from '@/components/ui/Rating';
+
+const priceFormatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
 
 export const ProductCard = ({ product }) => {
   return (
     <Card as='article' className='product-card'>
-      <Card.Header className='header'>
+      <Card.Header className='media'>
         <img
           className='image'
           src={product.image}
-          alt={product.name}
+          alt={product.title}
           draggable='false'
           loading='lazy'
           decoding='async'
         />
+      </Card.Header>
+
+      <Card.Content className='content'>
+        <Badge className='category'>{product.category}</Badge>
+
         <Card.Title as='h3' className='title'>
           {product.title}
         </Card.Title>
-      </Card.Header>
+
+        <Rating value={product.rating.rate} count={product.rating.count} />
+
+        <p className='price font-semibold'>
+          {priceFormatter.format(product.price)}
+        </p>
+      </Card.Content>
     </Card>
   );
 };
