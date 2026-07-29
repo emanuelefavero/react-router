@@ -8,8 +8,8 @@ export function App() {
       <Route Component={RootLayout}>
         <Route index element={<Home />} />
 
-        <Route path='chi-siamo' element={<AboutUs />} />
-        <Route path='prodotti' element={<Products />} />
+        <Route path='about-us' element={<AboutUs />} />
+        <Route path='products' element={<Products />} />
 
         <Route path='*' element={<NotFound />} />
       </Route>

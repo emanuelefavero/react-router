@@ -7,12 +7,12 @@ const routes = [
     label: 'Home',
   },
   {
-    to: '/chi-siamo',
-    label: 'Chi Siamo',
+    to: '/about-us',
+    label: 'About Us',
   },
   {
-    to: '/prodotti',
-    label: 'Prodotti',
+    to: '/products',
+    label: 'Products',
   },
 ];
 
