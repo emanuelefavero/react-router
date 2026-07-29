@@ -60,9 +60,9 @@ export const Products = () => {
 
   return (
     <section className='products' aria-labelledby='products-title'>
-      <h2 id='products-title' className='font-normal text-3xl'>
+      <h1 id='products-title' className='font-normal text-3xl'>
         Products
-      </h2>
+      </h1>
 
       {render()}
     </section>

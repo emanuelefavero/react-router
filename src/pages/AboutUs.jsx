@@ -3,7 +3,7 @@ import './AboutUs.css';
 export const AboutUs = () => {
   return (
     <>
-      <h1>Chi Siamo</h1>
+      <h1 className='font-normal text-3xl'>Chi Siamo</h1>
     </>
   );
 };
