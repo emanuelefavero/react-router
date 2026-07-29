@@ -1,0 +1,4 @@
+@productsURL = https://fakestoreapi.com/products/
+
+### Products
+GET {{productsURL}}
