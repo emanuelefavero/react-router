@@ -20,7 +20,7 @@ export const Header = () => {
   return (
     <header className='header'>
       <div className='container'>
-        <h1 className='font-semibold text-4xl'>React Router</h1>
+        <div className='logo font-semibold text-xl'>React Router</div>
 
         <nav aria-label='Main Navigation'>
           <ul className='route-list'>

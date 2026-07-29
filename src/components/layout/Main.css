@@ -1,6 +1,6 @@
 .main {
+  flex: 1;
   padding-block: 2rem;
-  min-height: 100svh;
 
   > .container {
     display: grid;
