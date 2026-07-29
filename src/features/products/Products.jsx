@@ -1,58 +1,59 @@
-import { useEffect, useState, useCallback } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router';
+import { useState, useEffect, useCallback } from 'react';
+import { delay } from '@/lib/utils';
+import { Spinner } from '@/components/ui/Spinner';
+import { ProductList } from './components/ProductList';
+import { fetchProducts } from './api';
+import './Products.css';
 
-const PRODUCTS_URL = 'https://fakestoreapi.com/products/';
+const INITIAL_STATE = Object.freeze({ step: 'idle' });
 
 export const Products = () => {
-  const [state, setState] = useState({ step: 'idle' });
+  const [state, setState] = useState(INITIAL_STATE);
 
-  const loadProducts = useCallback(async () => {
+  const loadProducts = useCallback(() => {
     setState({ step: 'loading' });
 
-    try {
-      const { data } = await axios.get(PRODUCTS_URL);
-
-      setState({ step: 'success', data });
-    } catch (error) {
-      setState({ step: 'error', error });
-    }
+    return Promise.all([fetchProducts(), delay()])
+      .then(([data]) => setState({ step: 'success', data }))
+      .catch((error) =>
+        setState({
+          step: 'error',
+          error,
+        }),
+      );
   }, []);
 
   useEffect(() => {
     loadProducts();
   }, [loadProducts]);
 
+  const handleReload = () => loadProducts();
+
   const render = () => {
     switch (state.step) {
       case 'idle':
         return null;
-
       case 'loading':
-        return <p role='status'>Caricamento...</p>;
-
+        return <Spinner />;
       case 'error':
-        return <p role='status'>Errore: {state.error}</p>;
-
-      case 'success':
         return (
-          <ul>
-            {state.data.map((product) => (
-              <li key={product.id}>
-                <Link to={`/products/${product.id}`}>{product.title}</Link>
-              </li>
-            ))}
-          </ul>
+          <div role='alert'>
+            <p>Error: {state.error.message}</p>
+            <button onClick={handleReload}>Retry</button>
+          </div>
         );
-
+      case 'success':
+        return <ProductList products={state.data} />;
       default:
         return null;
     }
   };
 
   return (
-    <section aria-labelledby='products-title'>
-      <h2>Prodotti</h2>
+    <section className='products' aria-labelledby='products-title'>
+      <h2 id='products-title' className='font-normal text-3xl'>
+        Products
+      </h2>
 
       {render()}
     </section>
