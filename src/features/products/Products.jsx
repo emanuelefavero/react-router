@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { delay } from '@/lib/utils';
 import { Spinner } from '@/components/ui/Spinner';
+import { IncrementalList } from '@/components/shared/IncrementalList';
 import { ProductList } from './components/ProductList';
 import { fetchProducts } from './api';
 import './Products.css';
@@ -43,7 +44,15 @@ export const Products = () => {
           </div>
         );
       case 'success':
-        return <ProductList products={state.data} />;
+        return (
+          <IncrementalList
+            batchSize={10}
+            items={state.data}
+            renderList={(visibleItems) => (
+              <ProductList products={visibleItems} />
+            )}
+          />
+        );
       default:
         return null;
     }
