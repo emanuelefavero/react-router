@@ -19,3 +19,12 @@
  *   | { step: 'error', error: Error }
  * } ProductsState
  */
+
+/**
+ * @typedef {
+ *   | { step: 'idle' }
+ *   | { step: 'loading' }
+ *   | { step: 'success', data: Product }
+ *   | { step: 'error', error: Error }
+ * } ProductState
+ */

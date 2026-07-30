@@ -1,4 +1,5 @@
 import './ProductCard.css';
+import { Link } from 'react-router';
 import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { Rating } from '@/components/ui/Rating';
@@ -10,7 +11,12 @@ const priceFormatter = new Intl.NumberFormat('en-US', {
 
 export const ProductCard = ({ product }) => {
   return (
-    <Card as='article' className='product-card'>
+    <Card
+      as={Link}
+      to={`/products/${product.id}`}
+      className='product-card'
+      aria-label={`View ${product.title}`}
+    >
       <Card.Header className='media'>
         <img
           className='image'

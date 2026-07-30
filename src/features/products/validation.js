@@ -32,6 +32,14 @@ const isValidProduct = (product) => {
   return true;
 };
 
+export const validateProductData = (data) => {
+  if (!isValidProduct(data)) {
+    throw new Error('Invalid data format: expected a product.');
+  }
+
+  return data;
+};
+
 export const validateProductsData = (data) => {
   if (!Array.isArray(data)) {
     throw new Error('Invalid data format: expected an array of products.');

@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router';
-import { Home, AboutUs, Products, NotFound } from '@/pages';
+import { Home, AboutUs, Products, Product, NotFound } from '@/pages';
 import { RootLayout } from '@/layouts';
 
 export function App() {
@@ -9,7 +9,10 @@ export function App() {
         <Route index element={<Home />} />
 
         <Route path='about-us' element={<AboutUs />} />
-        <Route path='products' element={<Products />} />
+        <Route path='products'>
+          <Route index element={<Products />} />
+          <Route path=':productId' element={<Product />} />
+        </Route>
 
         <Route path='*' element={<NotFound />} />
       </Route>

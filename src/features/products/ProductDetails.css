@@ -1,0 +1,17 @@
+.product-details {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 48rem;
+  padding-block: clamp(2rem, 8vw, 5rem);
+
+  .description {
+    color: var(--foreground-muted);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+  }
+}
