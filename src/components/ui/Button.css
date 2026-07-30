@@ -33,7 +33,7 @@
 
   &.primary {
     background-color: var(--primary);
-    color: var(--primary-foreground);
+    color: var(--foreground);
     border: 1px solid transparent;
   }
 

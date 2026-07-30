@@ -1,9 +1,21 @@
+import { Link } from 'react-router';
 import './Home.css';
 
 export const Home = () => {
   return (
-    <>
-      <h1 className='font-normal text-3xl'>Welcome to our React Router App!</h1>
-    </>
+    <section className='home'>
+      <h1 className='title font-semibold'>
+        Everyday products, all in one place.
+      </h1>
+
+      <p className='description text-lg'>
+        Explore a diverse selection of clothing, electronics, jewelry, and
+        practical essentials for every part of your day.
+      </p>
+
+      <Link to='/products' className='cta font-semibold'>
+        Browse products
+      </Link>
+    </section>
   );
 };

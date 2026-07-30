@@ -61,7 +61,7 @@ export const Products = () => {
   return (
     <section className='products' aria-labelledby='products-title'>
       <h1 id='products-title' className='font-normal text-3xl'>
-        Products
+        Our Products
       </h1>
 
       {render()}
