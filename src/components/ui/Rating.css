@@ -16,7 +16,7 @@
     height: 1rem;
 
     &.filled {
-      fill: currentColor;
+      fill: currentcolor;
     }
 
     &.empty {

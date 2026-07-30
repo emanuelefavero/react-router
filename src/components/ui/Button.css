@@ -32,8 +32,8 @@
   }
 
   &.primary {
-    background-color: var(--primary);
-    color: var(--foreground);
+    background-color: var(--primary-solid);
+    color: var(--primary-solid-foreground);
     border: 1px solid transparent;
   }
 

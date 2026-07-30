@@ -10,7 +10,7 @@
     align-items: center;
     gap: 1rem;
 
-    @media (min-width: 400px) {
+    @media (width >= 400px) {
       flex-direction: row;
     }
   }
@@ -18,5 +18,15 @@
   .route-list {
     display: flex;
     gap: 1rem;
+  }
+
+  .nav-link {
+    &:not(.active):hover {
+      text-decoration: underline;
+    }
+
+    &.active {
+      color: var(--primary);
+    }
   }
 }

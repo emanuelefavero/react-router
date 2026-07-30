@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import './AboutUs.css';
 
 export const AboutUs = () => {
@@ -29,6 +30,14 @@ export const AboutUs = () => {
           </p>
         </article>
       </div>
+
+      <p>
+        Looking for a place to start?{' '}
+        <Link to='/' className='link'>
+          Return to the homepage
+        </Link>
+        .
+      </p>
     </section>
   );
 };

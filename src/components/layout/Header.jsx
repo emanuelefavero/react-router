@@ -26,7 +26,7 @@ export const Header = () => {
           <ul className='route-list'>
             {routes.map((route) => (
               <li key={route.to}>
-                <NavLink to={route.to} className='link'>
+                <NavLink to={route.to} className='nav-link'>
                   {route.label}
                 </NavLink>
               </li>

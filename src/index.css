@@ -7,7 +7,8 @@
   --background-secondary: #eef2f5;
   --background-warning: #fff4e5;
   --primary: #3948ec;
-  --primary-foreground: #fff;
+  --primary-solid: #3948ec;
+  --primary-solid-foreground: #fff;
   --warning: #ffc109;
   --danger: #c10007;
   --border: #dbdcde;
@@ -100,17 +101,9 @@ a {
     color 0.2s ease-in-out,
     text-decoration 0.2s ease-in-out;
 
-  &:hover {
-    text-decoration: underline;
-  }
-
   &:focus-visible {
     outline: 2px solid var(--primary);
     outline-offset: 2px;
-  }
-
-  &.active {
-    color: var(--primary);
   }
 }
 
@@ -149,6 +142,25 @@ body {
 
   width: min(100% - var(--inline-padding) * 2, var(--max-width));
   margin-inline: auto;
+}
+
+/* COMPONENTS */
+.link {
+  color: var(--primary);
+  text-decoration: underline;
+  transition:
+    color 150ms ease,
+    text-decoration-thickness 150ms ease,
+    filter 150ms ease;
+
+  &:hover {
+    text-decoration-thickness: 2px;
+    filter: brightness(1.1);
+
+    @media (prefers-color-scheme: dark) {
+      filter: brightness(0.8);
+    }
+  }
 }
 
 /* UTILITIES */
