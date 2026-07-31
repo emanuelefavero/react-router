@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { Button } from '@/components/ui/Button';
 import { Spinner } from '@/components/ui/Spinner';
 import { fetchProduct } from './api';
@@ -22,6 +22,7 @@ const ProductError = ({ message, onRetry }) => (
 );
 
 export const ProductDetails = ({ productId }) => {
+  const navigate = useNavigate();
   const [state, setState] = useState(INITIAL_STATE);
   const isValidProductId = Number.isInteger(productId) && productId > 0;
 
@@ -29,17 +30,25 @@ export const ProductDetails = ({ productId }) => {
     setState({ step: 'loading' });
 
     return fetchProduct(productId)
-      .then((data) => setState({ step: 'success', data }))
+      .then((data) => {
+        if (data === null) {
+          navigate('/products', { replace: true });
+          return;
+        }
+
+        setState({ step: 'success', data });
+      })
       .catch((error) => setState({ step: 'error', error }));
-  }, [productId]);
+  }, [productId, navigate]);
 
   useEffect(() => {
-    if (isValidProductId) loadProduct();
-  }, [isValidProductId, loadProduct]);
+    if (!isValidProductId) {
+      navigate('/products', { replace: true });
+      return;
+    }
 
-  if (!isValidProductId) {
-    return <ProductError message='The product ID is not valid.' />;
-  }
+    loadProduct();
+  }, [isValidProductId, navigate, loadProduct]);
 
   switch (state.step) {
     case 'idle':
