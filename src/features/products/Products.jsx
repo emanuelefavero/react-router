@@ -14,7 +14,7 @@ export const Products = () => {
   const loadProducts = useCallback(() => {
     setState({ step: 'loading' });
 
-    return Promise.all([fetchProducts(), delay()])
+    return Promise.all([fetchProducts(), delay(300)])
       .then(([data]) => setState({ step: 'success', data }))
       .catch((error) =>
         setState({
