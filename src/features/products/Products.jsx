@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-import { delay } from '@/lib/utils';
 import { Spinner } from '@/components/ui/Spinner';
 import { IncrementalList } from '@/components/shared/IncrementalList';
 import { ProductList } from './components/ProductList';
@@ -14,8 +13,8 @@ export const Products = () => {
   const loadProducts = useCallback(() => {
     setState({ step: 'loading' });
 
-    return Promise.all([fetchProducts(), delay(300)])
-      .then(([data]) => setState({ step: 'success', data }))
+    return fetchProducts()
+      .then((data) => setState({ step: 'success', data }))
       .catch((error) =>
         setState({
           step: 'error',

@@ -1,4 +1,5 @@
 import { fetchData } from '@/lib/api';
+import { delay } from '@/lib/utils';
 import { validateProductData, validateProductsData } from './validation';
 
 const PRODUCTS_URL = 'https://fakestoreapi.com/products';
@@ -9,8 +10,11 @@ const productCache = new Map();
 export const fetchProducts = () => {
   if (productsCache) return productsCache;
 
-  productsCache = fetchData(PRODUCTS_URL)
-    .then(validateProductsData)
+  productsCache = Promise.all([
+    fetchData(PRODUCTS_URL).then(validateProductsData),
+    delay(300),
+  ])
+    .then(([data]) => data)
     .catch((error) => {
       productsCache = null;
       throw error;
@@ -24,8 +28,7 @@ export const fetchProduct = (productId) => {
     return productCache.get(productId);
   }
 
-  const request = fetchData(`${PRODUCTS_URL}/
-    ${productId}`)
+  const request = fetchData(`${PRODUCTS_URL}/${productId}`)
     .then((data) => {
       if (!data) return null;
 
