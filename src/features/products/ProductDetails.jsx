@@ -22,22 +22,27 @@ const ProductError = ({ message, onRetry }) => (
   </section>
 );
 
-const ProductNavigation = ({ prevProduct, nextProduct }) =>
-  (prevProduct || nextProduct) && (
+const ProductNavigation = ({ prevProduct, nextProduct }) => {
+  const navigate = useNavigate();
+
+  if (!prevProduct && !nextProduct) return null;
+
+  return (
     <nav className='actions' aria-label='Product navigation'>
       {prevProduct && (
-        <Link to={paths.product(prevProduct.id)} className='link'>
-          &larr; {prevProduct.title}
-        </Link>
+        <Button onClick={() => navigate(paths.product(prevProduct.id))}>
+          &larr; Previous product
+        </Button>
       )}
 
       {nextProduct && (
-        <Link to={paths.product(nextProduct.id)} className='link'>
-          {nextProduct.title} &rarr;
-        </Link>
+        <Button onClick={() => navigate(paths.product(nextProduct.id))}>
+          Next product &rarr;
+        </Button>
       )}
     </nav>
   );
+};
 
 export const ProductDetails = ({ productId }) => {
   const navigate = useNavigate();
@@ -47,18 +52,21 @@ export const ProductDetails = ({ productId }) => {
   const loadProduct = useCallback(() => {
     setState({ step: 'loading' });
 
+    const prevProductRequest =
+      productId > 1 ? fetchProduct(productId - 1) : Promise.resolve(null);
+
     return Promise.all([
       fetchProduct(productId),
-      fetchProduct(productId - 1),
+      prevProductRequest,
       fetchProduct(productId + 1),
     ])
-      .then(([data, prevData, nextData]) => {
+      .then(([data, prevProduct, nextProduct]) => {
         if (data === null) {
           navigate(paths.products, { replace: true });
           return;
         }
 
-        setState({ step: 'success', data, prevData, nextData });
+        setState({ step: 'success', data, prevProduct, nextProduct });
       })
       .catch((error) => setState({ step: 'error', error }));
   }, [productId, navigate]);
@@ -96,8 +104,8 @@ export const ProductDetails = ({ productId }) => {
           <p className='description text-lg'>{state.data.description}</p>
 
           <ProductNavigation
-            prevProduct={state.prevData}
-            nextProduct={state.nextData}
+            prevProduct={state.prevProduct}
+            nextProduct={state.nextProduct}
           />
         </section>
       );

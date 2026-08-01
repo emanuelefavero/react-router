@@ -2,8 +2,6 @@
 
 <img src="public/favicon.svg" alt="React Router Store icon" width="48" />
 
-> **Work in progress:** The core exercise is complete. Remaining bonuses include redirecting missing products programmatically and adding previous/next product navigation.
-
 A React Router exercise from my web development course. It builds a small storefront with shared layouts, API data, nested routes, and dynamic product pages.
 
 ## Exercise

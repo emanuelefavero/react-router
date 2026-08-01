@@ -28,8 +28,8 @@
  *   | {
  *       step: 'success',
  *       data: Product,
- *       prevData: Product | null,
- *       nextData: Product | null,
+ *       prevProduct: Product | null,
+ *       nextProduct: Product | null,
  *     }
  * } ProductState
  */
