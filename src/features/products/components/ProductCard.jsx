@@ -1,14 +1,10 @@
-import './ProductCard.css';
 import { Link } from 'react-router';
 import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { Rating } from '@/components/ui/Rating';
 import { paths } from '@/router/paths';
-
-const priceFormatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-});
+import { priceFormatter } from '@/features/products/utils';
+import './ProductCard.css';
 
 export const ProductCard = ({ product }) => {
   return (
