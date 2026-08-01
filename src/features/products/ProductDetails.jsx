@@ -22,6 +22,23 @@ const ProductError = ({ message, onRetry }) => (
   </section>
 );
 
+const ProductNavigation = ({ prevProduct, nextProduct }) =>
+  (prevProduct || nextProduct) && (
+    <nav className='actions' aria-label='Product navigation'>
+      {prevProduct && (
+        <Link to={paths.product(prevProduct.id)} className='link'>
+          &larr; {prevProduct.title}
+        </Link>
+      )}
+
+      {nextProduct && (
+        <Link to={paths.product(nextProduct.id)} className='link'>
+          {nextProduct.title} &rarr;
+        </Link>
+      )}
+    </nav>
+  );
+
 export const ProductDetails = ({ productId }) => {
   const navigate = useNavigate();
   const [state, setState] = useState(INITIAL_STATE);
@@ -30,14 +47,18 @@ export const ProductDetails = ({ productId }) => {
   const loadProduct = useCallback(() => {
     setState({ step: 'loading' });
 
-    return fetchProduct(productId)
-      .then((data) => {
+    return Promise.all([
+      fetchProduct(productId),
+      fetchProduct(productId - 1),
+      fetchProduct(productId + 1),
+    ])
+      .then(([data, prevData, nextData]) => {
         if (data === null) {
           navigate(paths.products, { replace: true });
           return;
         }
 
-        setState({ step: 'success', data });
+        setState({ step: 'success', data, prevData, nextData });
       })
       .catch((error) => setState({ step: 'error', error }));
   }, [productId, navigate]);
@@ -73,6 +94,11 @@ export const ProductDetails = ({ productId }) => {
           </h1>
 
           <p className='description text-lg'>{state.data.description}</p>
+
+          <ProductNavigation
+            prevProduct={state.prevData}
+            nextProduct={state.nextData}
+          />
         </section>
       );
     default:

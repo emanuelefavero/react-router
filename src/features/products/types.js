@@ -15,8 +15,8 @@
  * @typedef {
  *   | { step: 'idle' }
  *   | { step: 'loading' }
- *   | { step: 'success', data: Product[] }
  *   | { step: 'error', error: Error }
+ *   | { step: 'success', data: Product[] }
  * } ProductsState
  */
 
@@ -24,7 +24,12 @@
  * @typedef {
  *   | { step: 'idle' }
  *   | { step: 'loading' }
- *   | { step: 'success', data: Product }
  *   | { step: 'error', error: Error }
+ *   | {
+ *       step: 'success',
+ *       data: Product,
+ *       prevData: Product | null,
+ *       nextData: Product | null,
+ *     }
  * } ProductState
  */
