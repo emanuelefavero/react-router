@@ -1,13 +1,13 @@
-import { useState, useEffect, useCallback } from 'react';
-import { Spinner } from '@/components/ui/Spinner';
+import { useCallback, useEffect, useState } from 'react';
 import { IncrementalList } from '@/components/shared/IncrementalList';
-import { ProductList } from './components/ProductList';
-import { fetchProducts } from './api';
-import './Products.css';
+import { Spinner } from '@/components/ui/Spinner';
+import { fetchProducts } from '../api';
+import { ProductList } from './ProductList';
+import './ProductCatalog.css';
 
 const INITIAL_STATE = Object.freeze({ step: 'idle' });
 
-export const Products = () => {
+export const ProductCatalog = () => {
   const [state, setState] = useState(INITIAL_STATE);
 
   const loadProducts = useCallback(() => {
@@ -58,8 +58,11 @@ export const Products = () => {
   };
 
   return (
-    <section className='products' aria-labelledby='products-title'>
-      <h1 id='products-title' className='font-normal text-3xl'>
+    <section
+      className='product-catalog'
+      aria-labelledby='product-catalog-title'
+    >
+      <h1 id='product-catalog-title' className='font-normal text-3xl'>
         Our Products
       </h1>
 

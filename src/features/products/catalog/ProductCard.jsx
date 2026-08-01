@@ -3,7 +3,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { Rating } from '@/components/ui/Rating';
 import { paths } from '@/router/paths';
-import { priceFormatter } from '@/features/products/utils';
+import { priceFormatter } from '../utils';
 import './ProductCard.css';
 
 export const ProductCard = ({ product }) => {

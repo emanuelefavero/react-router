@@ -18,7 +18,7 @@ Using [Fake Store API](https://fakestoreapi.com/) as a mock API backend:
 
 The app uses React Router in Data Mode with `createBrowserRouter` and `RouterProvider`. Route objects are defined in [`src/router/routes.jsx`](./src/router/routes.jsx), where navigation metadata is used to derive the main Navbar links from the same source of truth.
 
-The shared [`RootLayout`](./src/layouts/RootLayout.jsx) renders the Header, page content, and Footer. Product fetching, validation, UI states, and feature components are organized inside [`src/features/products`](./src/features/products).
+The shared [`RootLayout`](./src/layouts/RootLayout.jsx) renders the Header, page content, and Footer. Product fetching, validation, and shared utilities live inside [`src/features/products`](./src/features/products), with catalog and product-detail code organized into separate feature slices. Their route pages are co-located in [`src/pages/products`](./src/pages/products).
 
 ## Project structure
 
@@ -27,12 +27,20 @@ src/
 ├── main.jsx
 ├── router/
 │   ├── router.jsx
-│   └── routes.jsx
+│   ├── routes.jsx
+│   └── paths.js
 ├── layouts/
 │   └── RootLayout.jsx
 ├── pages/
+│   └── products/
+│       ├── Product.jsx
+│       └── Products.jsx
 ├── features/
 │   └── products/
+│       ├── catalog/
+│       ├── details/
+│       ├── api.js
+│       └── validation.js
 └── components/
     └── ui/
 ```

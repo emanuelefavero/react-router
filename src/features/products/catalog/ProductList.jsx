@@ -1,5 +1,5 @@
-import './ProductList.css';
 import { ProductCard } from './ProductCard';
+import './ProductList.css';
 
 export const ProductList = ({ products }) => (
   <ul className='product-list'>
