@@ -1,6 +1,9 @@
 import { AboutUs, Home, NotFound, Product, Products } from '@/pages';
 import { paths } from './paths';
 
+/** App route tree.
+ * `handle.navigation` marks routes shown in the main Navbar.
+ * */
 export const routes = [
   // /
   {
@@ -56,6 +59,7 @@ export const routes = [
   },
 ];
 
+/** Flat list of navigation links for the main Navbar. */
 export const navLinks = routes.flatMap((route) =>
   route.handle?.navigation ? [route.handle.navigation] : [],
 );

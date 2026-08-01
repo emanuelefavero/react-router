@@ -1,5 +1,6 @@
 import { generatePath } from 'react-router';
 
+/** Canonical absolute paths used for links and programmatic navigation. */
 export const paths = Object.freeze({
   home: '/',
   aboutUs: '/about-us',
