@@ -1,4 +1,5 @@
 import { AboutUs, Home, NotFound, Product, Products } from '@/pages';
+import { paths } from './paths';
 
 export const routes = [
   // /
@@ -7,6 +8,7 @@ export const routes = [
     Component: Home,
     handle: {
       navigation: {
+        to: paths.home,
         label: 'Home',
       },
     },
@@ -18,6 +20,7 @@ export const routes = [
     Component: AboutUs,
     handle: {
       navigation: {
+        to: paths.aboutUs,
         label: 'About Us',
       },
     },
@@ -28,6 +31,7 @@ export const routes = [
     path: 'products',
     handle: {
       navigation: {
+        to: paths.products,
         label: 'Products',
       },
     },
@@ -52,9 +56,6 @@ export const routes = [
   },
 ];
 
-export const navLinks = routes
-  .filter((route) => route.handle?.navigation)
-  .map((route) => ({
-    to: route.index ? '/' : `/${route.path}`,
-    label: route.handle.navigation.label,
-  }));
+export const navLinks = routes.flatMap((route) =>
+  route.handle?.navigation ? [route.handle.navigation] : [],
+);

@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { Rating } from '@/components/ui/Rating';
+import { paths } from '@/router/paths';
 
 const priceFormatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -13,7 +14,7 @@ export const ProductCard = ({ product }) => {
   return (
     <Card
       as={Link}
-      to={`/products/${product.id}`}
+      to={paths.product(product.id)}
       className='product-card'
       aria-label={`View ${product.title}`}
     >

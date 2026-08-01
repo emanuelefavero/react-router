@@ -1,4 +1,5 @@
 import { Link } from 'react-router';
+import { paths } from '@/router/paths';
 import './Home.css';
 
 export const Home = () => {
@@ -13,7 +14,7 @@ export const Home = () => {
         practical essentials for every part of your day.
       </p>
 
-      <Link to='/products' className='cta font-semibold'>
+      <Link to={paths.products} className='cta font-semibold'>
         Browse products
       </Link>
     </section>

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { Button } from '@/components/ui/Button';
 import { Spinner } from '@/components/ui/Spinner';
+import { paths } from '@/router/paths';
 import { fetchProduct } from './api';
 import './ProductDetails.css';
 
@@ -14,7 +15,7 @@ const ProductError = ({ message, onRetry }) => (
 
     <div className='actions'>
       {onRetry && <Button onClick={onRetry}>Retry</Button>}
-      <Link to='/products' className='link'>
+      <Link to={paths.products} className='link'>
         Back to products
       </Link>
     </div>
@@ -32,7 +33,7 @@ export const ProductDetails = ({ productId }) => {
     return fetchProduct(productId)
       .then((data) => {
         if (data === null) {
-          navigate('/products', { replace: true });
+          navigate(paths.products, { replace: true });
           return;
         }
 
@@ -43,7 +44,7 @@ export const ProductDetails = ({ productId }) => {
 
   useEffect(() => {
     if (!isValidProductId) {
-      navigate('/products', { replace: true });
+      navigate(paths.products, { replace: true });
       return;
     }
 
