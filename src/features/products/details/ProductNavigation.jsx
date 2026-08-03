@@ -1,5 +1,7 @@
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { Button } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
 import { paths } from '@/router/paths';
 
 export const ProductNavigation = ({ prevProduct, nextProduct }) => {
@@ -8,13 +10,19 @@ export const ProductNavigation = ({ prevProduct, nextProduct }) => {
   if (!prevProduct && !nextProduct) return null;
 
   return (
-    <nav className='product-navigation' aria-label='Product navigation'>
+    <Card.Header
+      as='nav'
+      className='product-navigation'
+      aria-label='Product navigation'
+    >
       {prevProduct && (
         <Button
           variant={Button.variant.ghost}
+          aria-label='Previous product'
           onClick={() => navigate(paths.product(prevProduct.id))}
         >
-          &larr; Previous product
+          <ArrowLeft className='icon' aria-hidden='true' />
+          <span className='label'>Previous</span>
         </Button>
       )}
 
@@ -22,11 +30,13 @@ export const ProductNavigation = ({ prevProduct, nextProduct }) => {
         <Button
           variant={Button.variant.ghost}
           className='next'
+          aria-label='Next product'
           onClick={() => navigate(paths.product(nextProduct.id))}
         >
-          Next product &rarr;
+          <span className='label'>Next</span>
+          <ArrowRight className='icon' aria-hidden='true' />
         </Button>
       )}
-    </nav>
+    </Card.Header>
   );
 };
