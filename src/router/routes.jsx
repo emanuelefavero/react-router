@@ -17,18 +17,6 @@ export const routes = [
     },
   },
 
-  // /about-us
-  {
-    path: 'about-us',
-    Component: AboutUs,
-    handle: {
-      navigation: {
-        to: paths.aboutUs,
-        label: 'About Us',
-      },
-    },
-  },
-
   // /products, /products/:productId
   {
     path: 'products',
@@ -50,6 +38,18 @@ export const routes = [
         Component: Product,
       },
     ],
+  },
+
+  // /about-us
+  {
+    path: 'about-us',
+    Component: AboutUs,
+    handle: {
+      navigation: {
+        to: paths.aboutUs,
+        label: 'About Us',
+      },
+    },
   },
 
   // 404
