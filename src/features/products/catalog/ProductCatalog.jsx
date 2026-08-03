@@ -1,31 +1,16 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { IncrementalList } from '@/components/shared/IncrementalList';
 import { Spinner } from '@/components/ui/Spinner';
-import { fetchProducts } from '../api';
+import { useProducts } from '../context/useProducts';
 import { ProductList } from './ProductList';
 import './ProductCatalog.css';
 
-const INITIAL_STATE = Object.freeze({ step: 'idle' });
-
 export const ProductCatalog = () => {
-  const [state, setState] = useState(INITIAL_STATE);
-
-  const loadProducts = useCallback(() => {
-    setState({ step: 'loading' });
-
-    return fetchProducts()
-      .then((data) => setState({ step: 'success', data }))
-      .catch((error) =>
-        setState({
-          step: 'error',
-          error,
-        }),
-      );
-  }, []);
+  const { state, loadProducts } = useProducts();
 
   useEffect(() => {
-    loadProducts();
-  }, [loadProducts]);
+    if (state.step === 'idle') loadProducts();
+  }, [state.step, loadProducts]);
 
   const handleReload = () => loadProducts();
 
