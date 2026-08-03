@@ -16,8 +16,6 @@ export const ProductCatalog = () => {
 
   const render = () => {
     switch (state.step) {
-      case 'idle':
-        return null;
       case 'loading':
         return <Spinner />;
       case 'error':
@@ -37,6 +35,7 @@ export const ProductCatalog = () => {
             )}
           />
         );
+      case 'idle':
       default:
         return null;
     }
