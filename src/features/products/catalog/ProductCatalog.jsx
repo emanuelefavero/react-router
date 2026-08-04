@@ -21,7 +21,7 @@ export const ProductCatalog = () => {
       case 'error':
         return (
           <div role='alert'>
-            <p>Error: {state.error.message}</p>
+            <p>Products are currently unavailable. Please try again.</p>
             <button onClick={handleReload}>Retry</button>
           </div>
         );

@@ -12,12 +12,14 @@ export const ProductsProvider = ({ children }) => {
 
     return fetchProducts()
       .then((data) => setState({ step: 'success', data }))
-      .catch((error) =>
+      .catch((error) => {
+        console.error('Failed to load products:', error);
+
         setState({
           step: 'error',
           error,
-        }),
-      );
+        });
+      });
   }, []);
 
   const value = {

@@ -33,7 +33,10 @@ export const ProductDetails = ({ productId }) => {
 
         setState({ step: 'success', data, prevProduct, nextProduct });
       })
-      .catch((error) => setState({ step: 'error', error }));
+      .catch((error) => {
+        console.error('Failed to load product:', error);
+        setState({ step: 'error', error });
+      });
   }, [productId, navigate]);
 
   useEffect(() => {
